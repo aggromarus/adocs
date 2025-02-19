@@ -1,0 +1,104 @@
+= OpenAPI Definition
+:version: v0
+:base-url: /attachment
+:bearer-auth: bearerAuth
+
+== Сервер
+URL: `{base-url}`
+Описание: Generated server URL
+
+== Теги
+[horizontal]
+AttachmentController:: Работа с вложениями
+
+== Безопасность
+`{bearer-auth}` используется для аутентификации.
+
+== Пути
+
+=== Редактирование вложения
+`PUT {base-url}/attachments/+{id}+`
+
+[options="header"]
+|===
+| Параметр | Местоположение | Описание | Тип | Обязательный
+| id | path | Идентификатор вложения | int64 (min: 1) | Да
+|===
+
+Запрос: `application/json`
+Ответ: `200 OK`, содержит `AttachmentDetailsDto`
+
+=== Удаление вложения
+`DELETE {base-url}/attachments/+{id}+`
+
+Ответ: `200 OK`
+
+=== Получение списка вложений
+`GET {base-url}/attachments`
+
+[options="header"]
+|===
+| Параметр | Местоположение | Описание | Тип | Обязательный
+| parent-id | query | Идентификатор родительской сущности | int64 (min: 1) | Да
+| parent-type | query | Тип родительской сущности | string (CLIENT, CONTRACT, SERVICE_REQUEST, LEAD) | Да
+|===
+
+Ответ: `200 OK`, массив `AttachmentDetailsDto`
+
+=== Создание вложения
+`POST {base-url}/attachments`
+
+[options="header"]
+|===
+| Параметр | Местоположение | Описание | Тип | Обязательный
+| parent-id | query | Идентификатор родительской сущности | int64 (min: 1) | Да
+| parent-type | query | Тип родительской сущности | string (CLIENT, CONTRACT, SERVICE_REQUEST, LEAD) | Да
+| status | query | Статус документа | string (max 100) | Нет
+| type-document | query | Тип документа | string (max 100) | Да
+| comment | query | Примечание | string | Нет
+|===
+
+Тело запроса: содержит файл (binary)
+Ответ: `200 OK`, содержит `OnlyIdDto`
+
+=== Скачать вложение
+`GET {base-url}/attachments/+{id}+/download`
+
+Ответ: `200 OK`, содержит файл
+
+== Компоненты
+
+=== Схемы
+
+==== UpdateAttachmentDto
+- `status`: Статус (string, max 100, пример: `Active`)
+- `typeDocument`: Тип (string, max 100, пример: `Other`) *(обязательно)*
+- `comment`: Примечание (string, max 250)
+- `syncAskuFlg`: АСКУ (boolean)
+
+==== AttachmentDetailsDto
+- `id`: Идентификатор вложения (int64)
+- `name`: Название файла (string)
+- `size`: Размер файла (int64)
+- `status`: Статус (string, пример: `Active`)
+- `syncAskuFlg`: Флаг синхронизации с АСКУ (boolean)
+- `syncAshdFlg`: Флаг синхронизации с АСХД (boolean)
+- `comment`: Примечание (string)
+- `typeDocument`: Тип (string, пример: `Agreement`)
+- `parentId`: Идентификатор родительской сущности (int64)
+- `parentType`: Тип родительской сущности (CLIENT, CONTRACT, SERVICE_REQUEST, LEAD)
+- `s3Key`: Код файла в Minio (string)
+- `lastUpdate`: Дата обновления (date-time)
+
+==== Permission
+- `type`: Тип (string)
+- `create`, `view`, `edit`, `delete`: Доступ (boolean)
+- `methods`: Методы (array[string])
+- `childPermissions`: Вложенные разрешения (array[Permission])
+
+==== OnlyIdDto
+- `id`: Идентификатор сущности (int64)
+
+:qqq: integer
+:www: string
+:eee: bool

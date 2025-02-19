@@ -1,0 +1,9 @@
+:imagesdir: images
+= Картиночки
+
+image::Chihuahua-Meme-Face-meme-7.jpg[]
+
+
+image::3be086a33e62f3c04f14e12c3eca4729.jpg[]
+
+== Майкл Скотт недоволен

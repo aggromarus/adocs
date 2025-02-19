@@ -1,3 +1,37 @@
+include::vars/var.adoc[]
 = New Page
 
-You've found a new page.
+#You've found a new page.#
+
+Пример текста с переменной, отображает тип {object-param1-type}
+
+{qqq}
+{www}
+{eee}
+
+
+|===
+|{object-param1-type} |{object-param1-type} |Header 3 |Header 4
+
+|{object-param2-type}
+|Column 2, row 1
+|Column 3, row 1
+|Column 4, row 1
+
+|Column 1, row 2
+|Column 2, row 2
+|Column 3, row 2
+|Column 4, row 2
+
+|Column 1, row 3
+|Column 2, row 3
+|Column 3, row 3
+|Column 4, row 3
+
+|Column 1, row 4
+|Column 2, row 4
+|Column 3, row 4
+|Column 4, row 4
+|===
+
+12 {UpdateAttachmentDto.status.maxLength}

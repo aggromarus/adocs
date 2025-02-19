@@ -1,6 +1,5 @@
 = UML диаграмма
 
-
 [plantuml]
 ----
 @startuml
@@ -31,4 +30,43 @@ System -> Database: Обновление данных
 Database --> System: Данные обновлены
 System -> User: Ответ пользователю
 @enduml
+----
+
+== UML еще какая-то диаграмма
+
+[plantuml]
+----
+@startuml
+class User {
+  +id: int
+  +name: string
+  +email: string
+  +register(): void
+  +login(): boolean
+}
+
+class Admin {
+  +adminLevel: int
+  +manageUsers(): void
+}
+
+class Product {
+  +id: int
+  +name: string
+  +price: float
+  +getDiscountedPrice(discount: float): float
+}
+
+class Order {
+  +id: int
+  +date: Date
+  +totalAmount: float
+  +placeOrder(): boolean
+}
+
+User "1" -- "*" Order : places
+User <|-- Admin : inherits
+Order "*" -- "1" Product : contains
+@enduml
+
 ----

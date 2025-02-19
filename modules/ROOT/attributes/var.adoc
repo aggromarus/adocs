@@ -1,0 +1,7 @@
+
+//Object1
+:object-param1-type: integer
+:object-param2-type: string
+:qqq: integer
+:www: string
+:eee: bool
