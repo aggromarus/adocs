@@ -1,0 +1,1 @@
+npx nodemon --ext adoc,yml --exec "antora antora-playbook.yml"

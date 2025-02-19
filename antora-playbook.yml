@@ -1,6 +1,6 @@
 site:
   title: Docs Site
-  start_page: project-name::index.adoc
+  start_page: adocs::index.adoc
 content:
   sources:
     - url: .
@@ -9,3 +9,6 @@ ui:
   bundle:
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
+
+output:
+  dir: build/site

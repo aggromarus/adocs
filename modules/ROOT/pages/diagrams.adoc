@@ -1,0 +1,34 @@
+= UML диаграмма
+
+
+[plantuml]
+----
+@startuml
+actor User
+entity System
+entity Database
+entity ExternalAPI
+entity NotificationService
+
+User -> System: Запрос на выполнение операции
+System -> Database: Проверка данных
+Database --> System: Данные найдены
+
+alt Если данные не найдены
+System -> Database: Запрос на создание данных
+Database --> System: Данные созданы
+else Данные найдены
+System -> ExternalAPI: Получение информации
+ExternalAPI --> System: Ответ от API
+end
+
+loop Обработка данных
+System -> NotificationService: Отправка уведомления
+NotificationService --> User: Уведомление об успехе
+end
+
+System -> Database: Обновление данных
+Database --> System: Данные обновлены
+System -> User: Ответ пользователю
+@enduml
+----
